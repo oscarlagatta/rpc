@@ -1,0 +1,71 @@
+<div class="rpc-execution">
+    <form [formGroup]="form">
+        <p-panel>
+            <p-header>
+                <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">RPC Consulting LLP</span>
+                   
+                </div>
+            </p-header>
+
+            <div class="calculation-selector">
+                <p-fieldset>
+                        <p-header>Current Calculation</p-header>
+                        <rpc-calculation-input 
+                            [parent]="form">
+                        </rpc-calculation-input>
+        
+                        <rpc-calculation-selector 
+                            [parent]="form"
+                            [executionTypes]="executionTypes"
+                            (calculated)="addCalculationFromSelect($event)">
+                            >
+                        </rpc-calculation-selector>
+    
+                        <rpc-calculation-list
+                            [parent]="form"
+                            [map]="executionTypeMap"
+                            (removed)="removeCalculation($event)">
+                        </rpc-calculation-list>
+    
+                        <div class="calculation-selector">
+                                <button 
+                                    type="submit"
+                                    (click)="onSubmit()"
+                                    [disabled]="form.get('calculation').length === 0"
+                                >
+                                    Trigger Calculation
+                                </button>
+                        </div>
+    
+                        <div *ngIf="inProgress">
+                            <mat-progress-bar 
+                                mode="indeterminate"
+                                color="primary"
+                            >
+                            </mat-progress-bar>
+                        </div>
+                        
+                        
+                </p-fieldset>
+            </div>
+        
+            <div class="calculation-selector">
+                <p-fieldset>
+                        <p-header>Calculations</p-header>
+                        <div class="calculation-selector">
+                            <rpc-calculation-result-list 
+                                [parent]="form"
+                                [results]="calculationResults"
+                                >
+                            </rpc-calculation-result-list>
+                        </div>
+                </p-fieldset>
+            </div>
+            
+            
+        </p-panel>
+    </form>
+</div>
+
+<p-growl [value]="messages"></p-growl> 

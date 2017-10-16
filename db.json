@@ -1,0 +1,8 @@
+{
+    "executionTypes" : [ 
+      { "id": 1, "name": "Simple"},
+      { "id": 2, "name": "Complex"}
+    ],
+    "calculation" : [],
+    "calculationResults" : []
+  }

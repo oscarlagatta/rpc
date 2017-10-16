@@ -1,0 +1,32 @@
+<div class="calculation-item" [formGroup]="parent">
+        <div formArrayName="calculation">
+                <div 
+                    *ngFor="let item of calculations; let i = index;">
+            
+                    <div class="calculation-item__content" [formGroupName]="i">
+                        <div class="calculation-item__name">
+                            {{ item.value.referenceDate | date: 'dd/MM/yyyy'}}
+                        </div>
+                        <div class="calculation-item__name">                                
+                                {{ getExecutionTypeName(item.value.type_id).name }}
+                            </div>
+                        <div class="calculation-item__name">
+                            L: {{ item.value.limit | currency:'GBP':true }}
+                        </div>
+                        <div class="calculation-item__name">
+                            R: {{ item.value.retention  | currency:'GBP':true  }}
+                        </div>
+                        
+                        <button mat-raised-button 
+                                color="warn"
+                                (click)="onRemove(item, i)">
+                                Remove
+                        </button>
+                        
+                    </div>
+                </div>
+
+        </div>
+</div>
+
+

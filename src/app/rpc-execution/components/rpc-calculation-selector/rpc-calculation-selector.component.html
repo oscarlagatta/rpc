@@ -1,0 +1,25 @@
+<div class="calculation-selector" [formGroup]="parent">
+        <div formGroupName="calculationSelector">
+                <select formControlName="type_id">
+                        <option value="">Select Execution Type</option>
+                        <option
+                        *ngFor="let executionType of executionTypes"
+                        [value]="executionType.id">
+                        {{ executionType.name }}
+                        </option>
+                </select>
+                <div>
+                        <button type="button"
+                                (click)="onAddCalculation()"
+                                [disabled]="calculationExists || notSelected || noInputValues"
+                                >
+                                Add Calculation
+                        </button>
+                        <div class="calculation-selector__error"
+                                *ngIf="calculationExists">
+                             Type of Calculation Already In Use
+                        </div>
+                </div>
+        </div>
+       
+</div>
